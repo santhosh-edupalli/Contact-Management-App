@@ -38,7 +38,7 @@ const MapComponent: React.FC<Props> = ({ countries }) => {
       const markers: mapboxgl.Marker[] = [];
 
       countries.forEach((country) => {
-        const { countryInfo, active } = country;
+        const { countryInfo, active, country:countryName, recovered, deaths } = country;
 
         const markerElement = document.createElement('div');
         markerElement.className = 'marker';
@@ -54,7 +54,10 @@ const MapComponent: React.FC<Props> = ({ countries }) => {
         markers.push(marker);
 
         const popup = new mapboxgl.Popup({ closeButton: false, closeOnClick: false }).setHTML(
-          `<p>Active: ${active}</p>`
+          `<p>Country: ${countryName}</p>
+          <p>Active: ${active}</p>
+          <p>Recovered: ${recovered}</p>
+          <p>Death: ${deaths}</p>`
         );
 
         marker.getElement()?.addEventListener('mouseover', () => {

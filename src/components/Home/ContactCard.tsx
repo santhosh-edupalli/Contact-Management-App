@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom'
 import { Contact } from '../../types';
 import { deleteContact } from '../../redux/actions';
-import { FiInfo } from 'react-icons/fi';
+import { FiEdit, FiTrash, FiInfo } from 'react-icons/fi';
 
 interface Props {
   contact: Contact;
@@ -11,8 +11,8 @@ interface Props {
 
 const ContactCard: React.FC<Props> = ({ contact }) => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const [showConfirmation, setShowConfirmation] = useState(false);
-  const [showStatus, setShowStatus] = useState(false);
 
   const handleDelete = () => {
     dispatch(deleteContact(contact));
@@ -23,26 +23,23 @@ const ContactCard: React.FC<Props> = ({ contact }) => {
     setShowConfirmation(!showConfirmation);
   };
 
-  const toggleStatus = () => {
-    setShowStatus(!showStatus);
-  };
-
   return (
-    <div className="border border-gray-300 p-4 my-4 flex justify-between items-center">
+    <div className="contact-card bg-white rounded-lg shadow-lg p-4 my-4 flex flex-col justify-between content-center w-2/6 m-1">
       <div>
-        <h3 className="text-xl font-bold">{`${contact.firstName} ${contact.lastName}`}</h3>
-        {showStatus && <p>Status: {contact.status}</p>}
+        <h3 className="text-xl uppercase">{`${contact.firstName} ${contact.lastName}`}</h3>
+        <p className={`text-lg uppercase ${contact.status === 'active' ? 'text-green-500' : 'text-red-500'}`}> {contact.status}</p>
       </div>
-      <div>
-        <Link to={`/edit/${contact.id}`} className="mr-2 text-blue-500 hover:text-blue-700">
-          Edit
-        </Link>
-        <button onClick={toggleConfirmation} className="text-red-500 hover:text-red-700">
-          Delete
-        </button>
-      </div>
-      <div onMouseEnter={toggleStatus} onMouseLeave={toggleStatus}>
-        <FiInfo size={20} className="text-gray-500 cursor-pointer hover:text-gray-700" />
+      <div className="flex mt-10 mb-10 justify-around">
+        <FiEdit
+          size={20}
+          className="text-blue-500 hover:text-blue-700 cursor-pointer mr-2"
+          onClick={() => {navigate(`/edit/${contact.id}`)}}
+        />
+        <FiTrash
+          size={20}
+          className="text-red-500 hover:text-red-700 cursor-pointer"
+          onClick={toggleConfirmation}
+        />
       </div>
       {showConfirmation && (
         <div className="fixed top-0 left-0 w-screen h-screen flex justify-center items-center bg-gray-500 bg-opacity-50">

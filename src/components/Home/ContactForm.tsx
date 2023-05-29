@@ -26,8 +26,9 @@ const ContactForm: React.FC = () => {
   };
 
   return (
-    <div>
-      <h2 className="text-2xl font-bold mb-4">Create New Contact</h2>
+    <div className='flex justify-center mt-20'>
+      <div>
+      <p className="text-xl font-bold mb-4">Create New Contact</p>
       <form onSubmit={handleSubmit}>
         <div className="mb-4">
           <label htmlFor="firstName" className="block text-gray-700 font-bold mb-2">
@@ -60,7 +61,7 @@ const ContactForm: React.FC = () => {
             Status
           </label>
           <div>
-            <label htmlFor="active" className="mr-2">
+            <label htmlFor="active" className="mr-8">
               <input
                 type="radio"
                 id="active"
@@ -68,7 +69,7 @@ const ContactForm: React.FC = () => {
                 checked={status === 'active'}
                 onChange={(e) => setStatus(e.target.value as Status)}
               />
-              Active
+              &nbsp;Active
             </label>
             <label htmlFor="inactive">
               <input
@@ -78,14 +79,17 @@ const ContactForm: React.FC = () => {
                 checked={status === 'inactive'}
                 onChange={(e) => setStatus(e.target.value as Status)}
               />
-              Inactive
+              &nbsp;Inactive
             </label>
           </div>
         </div>
-        <button type="submit" className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
-          Create
-        </button>
+        <div className="mb-4 flex justify-center">
+          <button type="submit" className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+            Create
+          </button>
+        </div>
       </form>
+      </div>
     </div>
   );
 };

@@ -10,22 +10,30 @@ const ContactList: React.FC = () => {
   return (
     <div>
       {contacts.length === 0 ? (
-        <div className="text-center mt-4">
-          <p>No contacts found. Please add a contact from the Create New Contact button.</p>
+        <>
+        <div className="text-center mt-40">
+          <p className="font-sans">No contacts found. Please add a contact from the Create New Contact button.</p>
         </div>
+        <div className="text-center mt-4">
+          <Link to="/create" className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+            Create New Contact
+          </Link>
+        </div>
+        </>
       ) : (
-        <div>
-          <h2 className="text-2xl font-bold mb-4">Contacts</h2>
+        <>
+        <div className="w-6/6 text-center mt-4">
+          <Link to="/create" className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+            Create New Contact
+          </Link>
+        </div>
+        <div className='flex flex-row'>
           {contacts.map((contact) => (
             <ContactCard key={contact.id} contact={contact} />
           ))}
         </div>
+        </>
       )}
-      <div className="text-center mt-4">
-        <Link to="/create" className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
-          Create New Contact
-        </Link>
-      </div>
     </div>
   );
 };

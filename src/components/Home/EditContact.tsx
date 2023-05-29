@@ -46,6 +46,7 @@ const EditContact: React.FC = () => {
   }
 
   return (
+    <div className='flex justify-center mt-20'>
     <div>
       <h2 className="text-2xl font-bold mb-4">Edit Contact</h2>
       <form onSubmit={handleSubmit}>
@@ -80,7 +81,7 @@ const EditContact: React.FC = () => {
             Status
           </label>
           <div>
-            <label htmlFor="active" className="mr-2">
+            <label htmlFor="active" className="mr-8">
               <input
                 type="radio"
                 id="active"
@@ -88,7 +89,7 @@ const EditContact: React.FC = () => {
                 checked={status === 'active'}
                 onChange={(e) => setStatus(e.target.value as Status)}
               />
-              Active
+              &nbsp;Active
             </label>
             <label htmlFor="inactive">
               <input
@@ -98,14 +99,17 @@ const EditContact: React.FC = () => {
                 checked={status === 'inactive'}
                 onChange={(e) => setStatus(e.target.value as Status)}
               />
-              Inactive
+              &nbsp;Inactive
             </label>
           </div>
         </div>
-        <button type="submit" className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
-          Save
-        </button>
+        <div className="mb-4 flex justify-center">
+          <button type="submit" className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+            Save
+          </button>
+        </div>
       </form>
+    </div>
     </div>
   );
 };

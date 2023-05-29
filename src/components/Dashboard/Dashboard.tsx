@@ -30,10 +30,15 @@ const Dashboard: React.FC = () => {
   const graphData = graphDataQuery.data;
 
   return (
-    <div>
-      <h2>Graph Data</h2>
-      {graphData && <LineChart graphData={graphData} />}
-      <Map countries={countryCovidData}></Map>
+    <div className="flex flex-col w-4/6 justify-center mx-auto">
+      <div className="border rounded-lg shadow-lg p-4 flex-start">
+      <p className="text-xl font-bold uppercase mb-4">Graph Data</p>
+        {graphData && <LineChart graphData={graphData} />}
+      </div>
+      <div className="border rounded-lg shadow-lg p-4 flex-end mt-10">
+      <p className="text-xl font-bold uppercase mb-4">Country Wise Data</p>
+        <Map countries={countryCovidData}></Map>
+      </div>
     </div>
   );
 };
